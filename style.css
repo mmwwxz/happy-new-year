@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #4682B4);
+    color: #4a4a4a;
+    text-align: center;
+    padding: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #5F9EA0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    margin: 0;
+    color: white;
+    display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header h1 span {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeInLetter 0.5s forwards;
+}
+
+header h1 span:nth-child(n) {
+    animation-delay: calc(0.2s * var(--i));
+}
+
+@keyframes fadeInLetter {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+main {
+    margin-top: 20px;
+}
+
+#video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content p {
+    margin: 0 0 20px;
+    font-size: 1.2rem;
+}
+
+.modal-content button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #5F9EA0;
+    color: white;
+    transition: background 0.3s;
+}
+
+.modal-content button:hover {
+    background: #4682B4;
+}
+
+.wish-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+    width: 90%;
+    max-width: 600px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.wish-container:hover {
+    transform: scale(1.05);
+}
+
+.wish-container h2 {
+    font-size: 2rem;
+    font-family: 'Great Vibes', cursive;
+    color: #2F4F4F;
+}
+
+.wish-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #5a5a5a;
+}
+
+.blurred {
+    filter: blur(8px);
+    pointer-events: none;
+}
+
+.revealed {
+    filter: none;
+    transition: filter 0.5s ease;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #5a5a5a;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.snowflake {
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: -10%;
+    animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    body {
+        padding: 10px;
+    }
+    header h1 {
+        font-size: 2.8rem;
+    }
+    .wish-container {
+        width: 95%;
+        padding: 10px;
+    }
+    .wish-container h2 {
+        font-size: 1.8rem;
+    }
+    .wish-container p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    .wish-container h2 {
+        font-size: 1.6rem;
+    }
+    .wish-container p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 15px;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .wish-container h2 {
+        font-size: 1.4rem;
+    }
+    .wish-container p {
+        font-size: 0.9rem;
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .wish-container h2 {
+        font-size: 1.2rem;
+    }
+    .wish-container p {
+        font-size: 0.8rem;
+    }
+    footer {
+        font-size: 0.8rem;
+    }
+}

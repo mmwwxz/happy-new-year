@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Новым годом, Айиза!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="music-prompt" class="modal">
+        <div class="modal-content">
+            <p>Айиза, включим праздничное видео для настроения?</p>
+            <button onclick="startCelebration()">Да</button>
+            <button onclick="startCelebration()">Конечно!</button>
+        </div>
+    </div>
+
+    <header id="header" style="display: none;">
+        <h1 class="title">
+            <span style="--i:1">С</span>
+            <span style="--i:2"> </span>
+            <span style="--i:3">Н</span>
+            <span style="--i:4">о</span>
+            <span style="--i:5">в</span>
+            <span style="--i:6">ы</span>
+            <span style="--i:7">м</span>
+            <span style="--i:8"> </span>
+            <span style="--i:9">г</span>
+            <span style="--i:10">о</span>
+            <span style="--i:11">д</span>
+            <span style="--i:12">о</span>
+            <span style="--i:13">м</span>
+            <span style="--i:14">,</span>
+            <br>
+            <span style="--i:16">А</span>
+            <span style="--i:17">й</span>
+            <span style="--i:18">и</span>
+            <span style="--i:19">з</span>
+            <span style="--i:20">а</span>
+            <span style="--i:21">!</span>
+        </h1>
+    </header>
+    <main id="main" style="display: none;">
+        <div id="video-container">
+            <video id="video" width="600" height="400" controls loop style="display: none;">
+                <source src="fullbody_.MP4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div id="countdown"></div>
+
+        <div class="wish-container" onclick="revealText(this)">
+            <h2>Поздравление</h2>
+            <p class="blurred">Дорогая Айиза! Пусть этот Новый год будет для вас самым ярким, волшебным и счастливым. Пусть все мечты сбываются, а день начинается с улыбки!</p>
+        </div>
+
+        <div class="wish-container" onclick="revealText(this)">
+            <h2>Пожелания</h2>
+            <p class="blurred">Желаю найти хорошего парня, который будет носить вас на руках и радовать деньгами на хотелки! Пусть каждый день будет полон счастья, сюрпризов и только позитивных эмоций!</p>
+        </div>
+
+        <div class="wish-container" onclick="revealText(this)">
+            <h2>Про тебя</h2>
+            <p class="blurred">Вы невероятно классная, с потрясающим чувством юмора и огромной добротой! Пусть в Новом году вас окружают только любимые люди, а любые цели становятся реальностью!</p>
+        </div>
+    </main>
+
+    <footer id="footer" style="display: none;">
+        С любовью и теплом, Мухаммад ❤️
+    </footer>
+
+    <script>
+        let celebrationStarted = false;
+
+        function createSnowflake() {
+            if (!celebrationStarted) return;
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 5 + 's';
+
+            document.body.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 8000);
+        }
+
+        function startCelebration() {
+            celebrationStarted = true;
+            document.getElementById('music-prompt').style.display = 'none';
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('main').style.display = 'block';
+            document.getElementById('footer').style.display = 'block';
+
+            const video = document.getElementById('video');
+            video.style.display = 'block';
+            video.play();
+
+            setInterval(createSnowflake, 200);
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        function updateCountdown() {
+            if (!celebrationStarted) return;
+            const countdown = document.getElementById('countdown');
+            const now = new Date();
+            const newYear = new Date(now.getFullYear() + 1, 0, 1);
+            const diff = newYear - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+            countdown.innerText = `До Нового года: ${days}д ${hours}ч ${minutes}м ${seconds}с`;
+        }
+
+        function revealText(container) {
+            const text = container.querySelector('.blurred');
+            text.classList.remove('blurred');
+            text.classList.add('revealed');
+        }
+    </script>
+</body>
+</html>
